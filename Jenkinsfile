@@ -5,8 +5,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'make' 
+            
                 echo 'Building Project Geo'
+                 echo 'Build ID: ${env.BUILD_ID}
             }
         }
         
