@@ -10,7 +10,8 @@ pipeline {
                 echo 'Build ID: ${env.BUILD_ID}'
                 echo 'Build ID:' + BUILD_ID
                 echo 'Build ID: ${env.PLATFORM}'
-                echo 'Build ID:' + PLATFORM
+                echo 'Platform:' + PLATFORM
+                
             }
         }
         
