@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 script{
-                    def BUILD_COMMAND = "D:\\Programs\\Windows\\Unity\\"+UNITY_VERSION+"\\Editor\\Unity.exe -batchmode -quit -silent-crashes -accept-apiupdate -stackTracelogtype Full -logfile  D:\\out\\build.log -buildWindows64Player D:\\out\\" 
+                    def BUILD_COMMAND = "D:\\Programs\\Windows\\Unity\\"+UNITY_VERSION+"\\Editor\\Unity.exe -batchmode -quit -silent-crashes -accept-apiupdate -stackTracelogtype Full -logfile  D:\\out\\build.log -buildWindows64Player D:\\out\\ -projectPath"+WORKSPACE
                     bat  BUILD_COMMAND
                 }
             }
