@@ -33,12 +33,11 @@ pipeline {
                 fileOperations([folderCreateOperation('Artifacts')]) 
                 
 
-                def ziplocation = "Artifacts\\" + env.JOB_BASE_NAME + ".zip"
                 script {
                     zip archive: true, zipFile: "Artifacts\\" + env.JOB_BASE_NAME + ".zip", dir: WORKSPACE + "\\Builds"
 
                 }
-                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: ziplocation, targetLocation: 'D:\\Cloud\\Drive-Geeosp\\Projetos\\Builds\\' + env.JOB_BASE_NAME + "\\")])
+                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: "Artifacts\\" + env.JOB_BASE_NAME + ".zip", targetLocation: 'D:\\Cloud\\Drive-Geeosp\\Projetos\\Builds\\' + env.JOB_BASE_NAME + "\\")])
             }
             post {
 
