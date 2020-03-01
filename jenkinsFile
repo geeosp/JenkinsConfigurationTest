@@ -29,10 +29,12 @@ pipeline {
                     }
                 }
 
-                fileOperations([folderCreateOperation('Artifacts')]) fileOperations([folderDeleteOperation('Artifacts')])
+                fileOperations([folderDeleteOperation('Artifacts')])
+                fileOperations([folderCreateOperation('Artifacts')]) 
+                
 
+                def ziplocation = "Artifacts\\" + env.JOB_BASE_NAME + ".zip"
                 script {
-                    def ziplocation = "Artifacts\\" + env.JOB_BASE_NAME + ".zip"
                     zip archive: true, zipFile: "Artifacts\\" + env.JOB_BASE_NAME + ".zip", dir: WORKSPACE + "\\Builds"
 
                 }
