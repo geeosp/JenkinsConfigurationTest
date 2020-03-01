@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Archiving'){
             steps{
-                zip zipFile "bildfile.zip", dir:WORKSPACE+"\\Builds"
+                zip zipFile: "bildfile.zip", dir:WORKSPACE+"\\Builds"
             }
         }
 
