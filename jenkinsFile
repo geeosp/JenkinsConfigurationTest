@@ -31,6 +31,7 @@ pipeline {
                 dir ('Artifacts') {
                     deleteDir()
                 }   
+                fileOperations([folderCreateOperation('Artifacts')])
                 script {
                     def ziplocation = "Artifacts\\"+env.JOB_BASE_NAME+".zip"
                     zip archive: true, zipFile: ziplocation, dir: WORKSPACE + "\\Builds"
