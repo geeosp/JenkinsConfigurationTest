@@ -28,6 +28,9 @@ pipeline {
                         bat unity_location + " -quit -batchmode -executeMethod AutoBuildScript." + buid_method + " -silent-crashes -stackTraceLogType Full -logfile ./Builds/" + platform + "/build.log -projectpath " + WORKSPACE
                     }
                 }
+                dir ('Artifacts') {
+                    deleteDir()
+                }   
                 script {
                     def ziplocation = "Artifacts\\"+env.JOB_BASE_NAME+".zip"
                     zip archive: true, zipFile: ziplocation, dir: WORKSPACE + "\\Builds"
