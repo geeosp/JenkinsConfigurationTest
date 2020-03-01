@@ -28,7 +28,12 @@ pipeline {
                         bat unity_location + " -quit -batchmode -executeMethod AutoBuildScript." + buid_method + " -silent-crashes -stackTraceLogType Full -logfile ./Builds/" + platform + "/build.log -projectpath " + WORKSPACE
                     }
                 }
+                script {
+                    def ziplocation = "Artifacts\\"+PROJECT_NAME+"-"+PLATFORM+"-"+BUILD_TYPE+".zip"
+                    zip archive: true, zipFile: ziplocation, dir: WORKSPACE + "\\Builds"
 
+                }
+                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'Artifacts\\**', targetLocation: 'D:\\Cloud\\Drive-Geeosp\\Projetos\\Builds\\'+PROJECT_NAME+"\\")])
             }
             post {
 
@@ -45,13 +50,5 @@ pipeline {
                 }
             }
         }
-        stage('Archiving'){
-            steps{
-                script{
-                    zip archive:true, zipFile: "build.zip", dir:WORKSPACE+"\\Builds"
-             }
-              }
-        }
-
     }
 }
