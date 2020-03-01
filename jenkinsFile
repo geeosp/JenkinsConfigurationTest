@@ -29,11 +29,11 @@ pipeline {
                     }
                 }
                 script {
-                    def ziplocation = "Artifacts\\build.zip"
+                    def ziplocation = "Artifacts\\"+env.JOB_BASE_NAME+".zip"
                     zip archive: true, zipFile: ziplocation, dir: WORKSPACE + "\\Builds"
 
                 }
-                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'Artifacts\\**', targetLocation: 'D:\\Cloud\\Drive-Geeosp\\Projetos\\Builds\\'+env.JOB_BASE_NAME+"\\")])
+                fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: '\\Artifacts\\**', targetLocation: 'D:\\Cloud\\Drive-Geeosp\\Projetos\\Builds\\'+env.JOB_BASE_NAME+"\\")])
             }
             post {
 
