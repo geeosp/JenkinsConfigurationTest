@@ -39,7 +39,7 @@ pipeline {
                 }
                 dir("Artifacts") {
 
-                    fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: env.JOB_BASE_NAME + ".zip", targetLocation: 'D:\\Cloud\\Drive-Geeosp\\Projetos\\Builds\\' + PROJECT_NAME+ "\\")])
+                    fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: env.JOB_BASE_NAME + ".zip", targetLocation: 'D:\\Cloud\\Drive-Geeosp\\Projetos\\Builds\\' + PROJECT+ "\\")])
                 }
             }
             post {
