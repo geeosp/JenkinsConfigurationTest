@@ -15,15 +15,15 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - . # test-project
+          -  # test-project
         unityVersion:
           - 2020.1.8f1
         targetPlatform:
          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           #- StandaloneLinux64 # Build a Linux 64-bit standalone.
-       #   - iOS # Build an iOS player.
-        #  - WebGL # WebGL.
+         # - iOS # Build an iOS player.
+         # - WebGL # WebGL.
     steps:
       - uses: actions/checkout@v2
         with:
@@ -46,7 +46,7 @@ jobs:
      #     path: ${{ steps.testRunner.outputs.artifactsPath }}
       - uses: webbertakken/unity-builder@v0.10
         with:
-          projectPath: . #${{ matrix.projectPath }}
+          projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
          # customParameters: '-myParameter myValue -myBoolean -ThirdParameter andItsValue'
