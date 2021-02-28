@@ -3,21 +3,16 @@ pipeline {
 
     stages {
         stage('Build') {
+            parallel{
+stage('Build Windows'){
+
             steps {
                 script {
                     def platform = PLATFORM
                     def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
                     def unity_version = unity_project_version_file.m_EditorVersion
                     def buid_method = "PerformWindowsBuild"
-                    if (platform == "windows") {
-                        buid_method = "PerformWindowsBuild"
-                    } else if (platform == "android") {
-                        build_method = "PerformAndroidBuild"
-                    } else if (platform == "ios") {
-                        build_method = "PerformIOSBuild"
-                    } else if (platform == "windows_uas") {
-                        build_method = "PerformWindowsUniversalAppStoreBuild"
-                    }
+                    
                     if (BUILD_TYPE == "develop") {
                         buid_method = buid_method + "Develop"
                     }
@@ -28,7 +23,27 @@ pipeline {
                         bat unity_location + " -quit -batchmode -executeMethod AutoBuildScript." + buid_method + " -silent-crashes -stackTraceLogType Full -logfile ./Builds/" + platform + "/build.log -projectpath " + WORKSPACE
                     }
                 }
+            }
 
+}
+stage('Build Android'){
+
+            steps {
+                script {
+                    def platform = PLATFORM
+                    def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
+                    def unity_version = unity_project_version_file.m_EditorVersion
+                    def buid_method = "PerformAndroidBuild"
+                    if (isUnix()) {
+
+                    } else {
+                       	def unity_location = "\""+ UNITY_EDITORS_LOCATION +"\\"+ unity_version + "\\Editor\\Unity.exe\""
+                        bat unity_location + " -quit -batchmode -executeMethod AutoBuildScript." + buid_method + " -silent-crashes -stackTraceLogType Full -logfile ./Builds/" + platform + "/build.log -projectpath " + WORKSPACE
+                    }
+                }
+            }
+
+}
                 fileOperations([folderDeleteOperation('Artifacts')])
                 fileOperations([folderCreateOperation('Artifacts')])
 
