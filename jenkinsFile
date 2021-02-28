@@ -43,8 +43,12 @@ stage('Build Android'){
                 }
             }
 
+                }
 }
-                fileOperations([folderDeleteOperation('Artifacts')])
+
+stage('Publishing Artifacts'){
+
+             fileOperations([folderDeleteOperation('Artifacts')])
                 fileOperations([folderCreateOperation('Artifacts')])
 
 
@@ -69,8 +73,8 @@ stage('Build Android'){
                     office365ConnectorSend message: "Build Failed", webhookUrl: "https://outlook.office.com/webhook/b9949e65-9e33-4de0-9ca9-02069d1fed8e@7f347c10-2b11-4d69-8c0f-ec32980bdb29/IncomingWebhook/41387506ea1d426092d38bde80fd942f/fc45340d-61f3-4ccf-b294-725b91663df1",
                         color: "#FF9F96"
 
-                }
             }
         }
     }
+}   
 }
