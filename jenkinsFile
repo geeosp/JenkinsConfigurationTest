@@ -24,7 +24,7 @@ pipeline {
                     if (isUnix()) {
 
                     } else {
-                        def unity_location = "C:\\Programs\\Windows\\Unity\\" + unity_version + "\\Editor\\Unity.exe"
+                       	def unity_location = "\""+ UNITY_EDITORS_LOCATION +"\\"+ unity_version + "\\Editor\\Unity.exe\""
                         bat unity_location + " -quit -batchmode -executeMethod AutoBuildScript." + buid_method + " -silent-crashes -stackTraceLogType Full -logfile ./Builds/" + platform + "/build.log -projectpath " + WORKSPACE
                     }
                 }
