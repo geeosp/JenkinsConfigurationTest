@@ -129,7 +129,7 @@ pipeline {
                           def unity_project_version_file = readYaml file: project_folder+'/ProjectSettings/ProjectVersion.txt'
                             def unity_version = unity_project_version_file.m_EditorVersion
                             def build_method = GetBuildMethodForPlatform(PLATFORM, BUILD_TYPE)
-                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform" + platform
+                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform
                             if (isUnix()) {
 
                             } else {
