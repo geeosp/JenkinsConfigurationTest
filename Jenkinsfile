@@ -7,15 +7,39 @@ pipeline {
       }
     }
 
-    stage('Build for Windows') {
+stage('Test') {
       parallel {
-        stage('Build for Windows') {
+        stage('Test Windows') {
           steps {
             powershell(script: 'build.ps1', returnStatus: true, returnStdout: true)
           }
         }
 
-        stage('Build for Android') {
+        stage('Test Android') {
+          steps {
+            powershell(script: 'build.ps1', returnStdout: true, returnStatus: true)
+          }
+        }
+
+        stage('Test UWP') {
+          steps {
+            powershell(script: 'build.ps1', returnStdout: true, returnStatus: true)
+          }
+        }
+
+      }
+    }
+
+
+    stage('Build') {
+      parallel {
+        stage('Build Windows') {
+          steps {
+            powershell(script: 'build.ps1', returnStatus: true, returnStdout: true)
+          }
+        }
+
+        stage('Build Android') {
           steps {
             powershell(script: 'build.ps1', returnStdout: true, returnStatus: true)
           }
@@ -30,11 +54,7 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      steps {
-        powershell 'Test Windows'
-      }
-    }
+    
 
     stage('Archive Artifacts') {
       steps {
