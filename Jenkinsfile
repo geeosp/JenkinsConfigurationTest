@@ -71,10 +71,9 @@ stage('Test') {
    	            nunit testResultsPattern: "Test*.xml"
           }
         }
+  }
+  }
 
-      }
-    }
-}
 
     stage('Build') {
       parallel {
