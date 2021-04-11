@@ -4,14 +4,14 @@ using System;
 
 class AutoBuildScript
 {
-    static private string[] SCENES = FindEnabledEditorScenes();
+    private static string[] SCENES = FindEnabledEditorScenes();
 
-    static private string APP_NAME = PlayerSettings.productName;
-    static private string TARGET_DIR = "Builds";
+    private static string APP_NAME = PlayerSettings.productName;
+    private static string TARGET_DIR = "Builds";
 
-#if UNITY_2020
-    static private BuildOptions ReleaseBuildOptions = BuildOptions.DetailedBuildReport;
-    static private BuildOptions DevelopmentBuildOptions =
+#if UNITY_2020_1_OR_NEWER
+    private static BuildOptions ReleaseBuildOptions = BuildOptions.DetailedBuildReport;
+    private static BuildOptions DevelopmentBuildOptions =
  BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.DetailedBuildReport;
 #elif UNITY_2019_1_OR_NEWER
     static private BuildOptions ReleaseBuildOptions = BuildOptions.None;
@@ -23,7 +23,32 @@ class AutoBuildScript
         set { EditorPrefs.SetString("AndroidSdkRoot", value); }
     }
 
+    [MenuItem("Build/Build Current Platform", priority = 0)]
+    public static void BuildCurrentPlatform()
+    {
+        switch (EditorUserBuildSettings.activeBuildTarget)
+        {
+        case BuildTarget.Android:
+            PerformAndroidBuild();
+            break;
+        case BuildTarget.StandaloneWindows:
+            case BuildTarget.StandaloneWindows64:
+            PerformWindowsBuild();
+            break;
+        case BuildTarget.WSAPlayer:
+            PerformWindowsUniversalAppStoreBuild();
+            break;
 
+
+        }
+        
+
+    }
+    
+    
+    
+    
+    
     #region WindowsStandAlone
 
     [MenuItem("Build/CI/Windows StandAlone Release")]
@@ -50,7 +75,7 @@ class AutoBuildScript
     static void PerformWindowsUniversalAppStoreBuild()
     {
         string target_dir = APP_NAME; // + ".exe";
-        GenericBuild(SCENES, TARGET_DIR + "/windows/release/" + GetDateString() + "/" + target_dir,
+        GenericBuild(SCENES, TARGET_DIR + "/uwp/release/" + GetDateString() + "/" + target_dir,
             BuildTargetGroup.WSA, BuildTarget.WSAPlayer, BuildOptions.None);
     }
 
@@ -58,7 +83,7 @@ class AutoBuildScript
     static void PerformWindowsUniversalAppStoreBuildDevelop()
     {
         string targetDir = APP_NAME; // + "_dev.exe";
-        GenericBuild(SCENES, TARGET_DIR + "/windows/development/" + GetDateString() + "/" + targetDir,
+        GenericBuild(SCENES, TARGET_DIR + "/uwp/development/" + GetDateString() + "/" + targetDir,
             BuildTargetGroup.WSA, BuildTarget.WSAPlayer, BuildOptions.Development | BuildOptions.AllowDebugging);
     }
 
