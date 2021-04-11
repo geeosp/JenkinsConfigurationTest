@@ -15,10 +15,11 @@ pipeline {
                     steps {
                         script {
                             def platform = "Win64"
-                            def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
+                            def project_folder = "jobconfigurator"
+                            def unity_project_version_file = readYaml file: project_folder+'/ProjectSettings/ProjectVersion.txt'
                             def unity_version = unity_project_version_file.m_EditorVersion
                             def build_method = "AutoBuildScript.BuildCurrentPlatform"
-                            def project_workspace = WORKSPACE + "/jobconfigurator" + "-" + platform
+                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform
                             if (isUnix()) {
 
                             } else {
@@ -36,10 +37,11 @@ pipeline {
                     steps {
                         script {
                             def platform = "Android"
-                            def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
+                            def project_folder = "jobconfigurator"
+                            def unity_project_version_file = readYaml file: project_folder+'/ProjectSettings/ProjectVersion.txt'
                             def unity_version = unity_project_version_file.m_EditorVersion
                             def build_method = "AutoBuildScript.BuildCurrentPlatform"
-                            def project_workspace = WORKSPACE + "/jobconfigurator" + "-" + platform
+                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform
                             if (isUnix()) {
 
                             } else {
@@ -58,10 +60,11 @@ pipeline {
                     steps {
                         script {
                             def platform = "WSAPlayer"
-                            def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
+                           def project_folder = "jobconfigurator"
+                            def unity_project_version_file = readYaml file: project_folder+'/ProjectSettings/ProjectVersion.txt'
                             def unity_version = unity_project_version_file.m_EditorVersion
                             def build_method = "AutoBuildScript.BuildCurrentPlatform"
-                            def project_workspace = WORKSPACE + "/jobconfigurator" + "-" + platform
+                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform
                             if (isUnix()) {
 
                             } else {
@@ -84,10 +87,11 @@ pipeline {
                     steps {
                         script {
                             def platform = "Win64"
-                            def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
+                            def project_folder = "jobconfigurator"
+                          def unity_project_version_file = readYaml file: project_folder+'/ProjectSettings/ProjectVersion.txt'
                             def unity_version = unity_project_version_file.m_EditorVersion
                             def build_method = GetBuildMethodForPlatform(PLATFORM, BUILD_TYPE)
-                            def project_workspace = WORKSPACE + "/jobconfigurator" + "-" + platform
+                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform
                             if (isUnix()) {
 
                             } else {
@@ -102,10 +106,11 @@ pipeline {
                     steps {
                         script {
                             def platform = "Android"
-                            def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
+                         def project_folder = "jobconfigurator"
+                          def unity_project_version_file = readYaml file: project_folder+'/ProjectSettings/ProjectVersion.txt'
                             def unity_version = unity_project_version_file.m_EditorVersion
                             def build_method = GetBuildMethodForPlatform(PLATFORM, BUILD_TYPE)
-                            def project_workspace = WORKSPACE + "/jobconfigurator" + "-" + platform
+                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform
                             if (isUnix()) {
 
                             } else {
@@ -120,10 +125,11 @@ pipeline {
                     steps {
                         script {
                             def platform = "WSAPlayer"
-                            def unity_project_version_file = readYaml file: 'ProjectSettings/ProjectVersion.txt'
+                        def project_folder = "jobconfigurator"
+                          def unity_project_version_file = readYaml file: project_folder+'/ProjectSettings/ProjectVersion.txt'
                             def unity_version = unity_project_version_file.m_EditorVersion
                             def build_method = GetBuildMethodForPlatform(PLATFORM, BUILD_TYPE)
-                            def project_workspace = WORKSPACE + "/jobconfigurator" + "-" + platform
+                            def project_workspace = WORKSPACE + "/"+ project_folder + "-" + platform" + platform
                             if (isUnix()) {
 
                             } else {
