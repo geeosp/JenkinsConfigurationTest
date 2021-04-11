@@ -74,7 +74,7 @@ stage('Test') {
 
       }
     }
-
+}
 
     stage('Build') {
       parallel {
